@@ -15,7 +15,7 @@ namespace PDVCPP01._000
         /// </summary>
         static void Main()
         {
-#if (DEBUG)
+#if (!DEBUG)
             Main main = new Main();
             main.ExecucaoServico();
 #else

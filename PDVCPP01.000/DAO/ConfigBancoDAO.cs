@@ -40,7 +40,7 @@ namespace PDVCPP01._000.DAO
                             Service_Config.Token = reader["ZAU_TOKEN"].ToString().TrimStart().TrimEnd();
                             Service_Config.Login = reader["ZAU_LOGIN"].ToString().TrimStart().TrimEnd();
                             Service_Config.Senha = reader["ZAU_SENHA"].ToString().TrimStart().TrimEnd();
-                            Service_Config.DataRetrocesso = reader["ZAU_TPUPL"].ToString().TrimStart().TrimEnd();
+                            Service_Config.DataRetrocesso = reader["ZAU_DTRET"].ToString().TrimStart().TrimEnd();
                         }
                     }
                 }

@@ -30,7 +30,7 @@ namespace PDVCPP01._000.HttpClients
         {
             string dataInicial = "";
             if (Service_Config.DataRetrocesso != "0")
-                dataInicial = DateTime.Now.AddDays(Convert.ToDouble(Service_Config.DataRetrocesso)).ToString("dd/MM/yyyy");
+                dataInicial = DateTime.Now.AddDays(-Convert.ToDouble(Service_Config.DataRetrocesso)).ToString("dd/MM/yyyy");
             else
                 dataInicial = DateTime.Now.ToString("dd/MM/yyyy");
 
