@@ -35,5 +35,6 @@ namespace PDVCPP01._000.Model
         public string fk_tbl_pedido_cliente_id_pedido_cliente { get; set; }
         public string ie { get; set; }
         public string im { get; set; }
+        public string cod_municipio { get; set; }
     }
 }

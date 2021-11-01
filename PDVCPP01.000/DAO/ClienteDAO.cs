@@ -67,7 +67,7 @@ namespace PDVCPP01._000.DAO
                    " '', " + //ZA1_DTEXC
                    " '', " + //ZA1_ID_T_C
                    " '', " + //ZA1_CDPAIS
-                   " '' " + //ZA1_CODMUN
+                   " '" + cliente.cod_municipio + "' " + //ZA1_CODMUN
                    ")";
 
 
