@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using PDVCPP01._000.Config;
+using PDVCPP01._000.Guardian;
 using PDVCPP01._000.Model;
 using System;
 using System.Collections.Generic;
@@ -36,10 +37,11 @@ namespace PDVCPP01._000.HttpClients
 
             string dataFinal = DateTime.Now.ToString("dd/MM/yyyy");
 
-            UriBuilder builder = new UriBuilder("https://painel.velocepdv.com.br/" + path);
+            UriBuilder builder = new UriBuilder("http://api.velocepdv.com.br/" + path);
             builder.Query = "dt_inicial="+ dataInicial + "&dt_final=" + dataFinal + "";
             var response = _client.GetStringAsync(builder.Uri).Result;
             var entity = JsonConvert.DeserializeObject<T>(response);
+            Guardian_LogTxt.LogAplicacao(Service_Config.NomeServico, response.ToString());
             return entity;
         }
 

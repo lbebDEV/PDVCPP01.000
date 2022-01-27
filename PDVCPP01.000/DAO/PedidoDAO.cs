@@ -113,7 +113,7 @@ namespace PDVCPP01._000.DAO
                " '" + pedido.email_cliente + "', " +
                " '" + pedido.bloqueado + "', " +
                " '" + pedido.venda_online + "', " +
-               " '" + pedido.pagamentos_json + "', " +
+               " '', " + // Atiga gravação da tag pagamentos_json
                " '" + pedido.versao + "', " +
                " '" + pedido.adquirente + "', " +
                " '" + pedido.projeto + "', " +
@@ -164,7 +164,8 @@ namespace PDVCPP01._000.DAO
                     }
                     catch (Exception ex)
                     {
-                        Guardian_Log.Log_Rotina(Service_Config.NomeServico, Tipo.Erro, "Erro na Rotina de inserção de Pedido. " + ex.ToString());
+                        Guardian_Log.Log_Rotina(Service_Config.NomeServico, Tipo.Erro, "Inserir Pedido. " + ex.ToString() );
+                        Guardian_LogTxt.LogAplicacao(Service_Config.NomeServico, query + " | " + ex.ToString());
                         return false;
                     }
                 }

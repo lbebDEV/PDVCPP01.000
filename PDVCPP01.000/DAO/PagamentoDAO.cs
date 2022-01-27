@@ -57,16 +57,16 @@ namespace PDVCPP01._000.DAO
                         "'" + item.tipo + "', " +
                         "'" + item.status_codigo + "', " +
                         "'" + item.pagamento_transacao_id + "', " +
-                        "'" + item.json_retorno + "', " +
+                        "'', " + // Antiga gravação da Tag json_retorno
                         "'" + item.troco + "', " +
                         "'" + item.dt_cadastro + "', " +
                         "'" + item.dt_alteracao + "', " +
                         "'" + item.dt_exclusao + "', " +
-                        "'" + item.json_pagamento + "', " +
+                        "'', " + // Antiga gravação da Tag json_pagamento
                         "'" + item.fk_tbl_pedido_pagamento_id_nota + "', " +
                         "'" + item.pos_fisico + "', " +
                         "'" + item.motivo_cancelamento + "', " +
-                        "'" + item.json_cancelamento + "', " +
+                        "'', " + // Antiga gravação da Tag json_cancelamento
                         "'" + item.identificador_cliente + "', " +
                         "'" + item.saldo + "', " +
                         "'" + item.numero_cartao + "', " +
@@ -87,6 +87,7 @@ namespace PDVCPP01._000.DAO
             catch (Exception ex)
             {
                 Guardian_Log.Log_Rotina(Service_Config.NomeServico, Tipo.Erro, "Erro na Rotina de inserção de pagamento do Pedido. Query:" + query + "/ EX: " + ex.ToString());
+                Guardian_LogTxt.LogAplicacao(Service_Config.NomeServico, query + " | " + ex.ToString());
                 throw ex;
             }
         }

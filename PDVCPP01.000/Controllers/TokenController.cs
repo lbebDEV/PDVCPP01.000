@@ -19,7 +19,7 @@ namespace PDVCPP01._000.Controllers
         {
             try
             {
-                LoginHttpClient loginHttp = new LoginHttpClient("https://painel.velocepdv.com.br/");
+                LoginHttpClient loginHttp = new LoginHttpClient("http://api.velocepdv.com.br/");
 
                 var credenciais = new Login();
 

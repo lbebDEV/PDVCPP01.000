@@ -97,6 +97,7 @@ namespace PDVCPP01._000.DAO
             catch (Exception ex)
             {
                 Guardian_Log.Log_Rotina(Service_Config.NomeServico, Tipo.Erro, "Erro na Rotina de inserção de nota do Pedido. Query:" + query + "/ EX: " + ex.ToString());
+                Guardian_LogTxt.LogAplicacao(Service_Config.NomeServico, query + " | " + ex.ToString());
                 throw ex;
             }
         }

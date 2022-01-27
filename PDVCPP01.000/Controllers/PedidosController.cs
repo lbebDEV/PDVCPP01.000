@@ -22,7 +22,7 @@ namespace PDVCPP01._000.Controllers
         {
             try
             {
-                HttpClientBase<PedidoResult> httpPedidoBase = new HttpClientBase<PedidoResult>("https://painel.velocepdv.com.br/");
+                HttpClientBase<PedidoResult> httpPedidoBase = new HttpClientBase<PedidoResult>("http://api.velocepdv.com.br/");
 
                 if (Service_Config.CadastroHabilitado)
                 {
@@ -40,18 +40,27 @@ namespace PDVCPP01._000.Controllers
 
         public void SincronizarNovos(List<Pedido> pedidoERP, List<Pedido> pedidoAPI)
         {
-            int countCadastrados = 0;
-
-            HashSet<string> listaPortal = new HashSet<string>(pedidoERP.Select(s => s.id_tbl_pedido));
-
-            List<Pedido> novosAcessos = pedidoAPI.Where(m => !listaPortal.Contains(m.id_tbl_pedido)).ToList();
-
-            foreach (var pedido in novosAcessos)
+            try
             {
-                if (pedidoDAO.Inserir(pedido, Nome))
-                    countCadastrados++;
+                int countCadastrados = 0;
+
+                HashSet<string> listaPortal = new HashSet<string>(pedidoERP.Select(s => s.id_tbl_pedido));
+
+                List<Pedido> novosAcessos = pedidoAPI.Where(m => !listaPortal.Contains(m.id_tbl_pedido)).ToList();
+
+                foreach (var pedido in novosAcessos)
+                {
+                    if (pedidoDAO.Inserir(pedido, Nome))
+                        countCadastrados++;
+                }
+
+                Guardian_Log.Log_Rotina(Service_Config.NomeServico, Tipo.Auditoria, "Numero de Pedidos cadastrados: " + countCadastrados);
             }
-            Guardian_Log.Log_Rotina(Service_Config.NomeServico, Tipo.Auditoria, "Numero de Clientes cadastrados: " + countCadastrados);
+            catch (Exception ex)
+            {
+                Guardian_Log.Log_Rotina(Service_Config.NomeServico, Tipo.Erro, "Erro na Rotina de Sincronizar Pedidos. " + ex.ToString());
+            }
+           
         }
     }
 }
